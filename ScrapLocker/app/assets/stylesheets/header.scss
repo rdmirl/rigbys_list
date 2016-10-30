@@ -1,0 +1,44 @@
+body {
+    #padding-top: 250px;
+}
+
+.zsx {
+	background-color: rgba(128, 0, 5, 0.85);
+}
+
+.zsx h1, .zsx h3 {
+	text-align:center;
+	color:#fff;
+}
+
+.zsx h1 {
+	font-size:80px;
+	font-family:'Buenard', serif;
+	font-weight:bold;
+	text-transform:inherit;
+	margin: 0px auto 0px;
+	text-shadow: 2px 2px 2px #000;
+	padding-bottom: 10px;
+	-webkit-text-shadow: 2px 2px 2px #000;
+	-moz-text-shadow: 2px 2px 2px #000;
+}
+
+.zsx h3 {
+	font-size: 25px;
+	font-weight:lighter;
+	margin: 0px auto 15px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 629px) {
+	.zsx h1 { 
+		font-size:12px; 
+		padding-bottom: 2px;
+		padding-top: 5px;
+		text-align: left;
+	}
+	.zsx h1::after {
+		content: " - Plan. Do. Share."
+	}
+    .zsx h3 { display: none; }
+}
+

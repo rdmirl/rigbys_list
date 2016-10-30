@@ -1,0 +1,70 @@
+<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a id="navbar-brand-tag" class="navbar-brand" href="#">ScrapLocker</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+                  <li><a href="http://www.jquery2dotnet.com">My Scraps</a></li>
+                  <li class="dropdown">
+                     <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Browse<b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="http://www.jquery2dotnet.com">Trending</a></li>
+                        <li><a href="http://www.jquery2dotnet.com">Recent</a></li>
+                        <li><a href="http://www.jquery2dotnet.com">Friends</a></li>
+                     </ul>
+                  </li>
+                  <li class="dropdown">
+                     <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Categories<b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="http://www.jquery2dotnet.com">Movies</a></li>
+                        <li><a href="http://www.jquery2dotnet.com">Foods</a></li>
+                        <li><a href="http://www.jquery2dotnet.com">Bars</a></li>
+                     </ul>
+                  </li>
+    </ul>
+    <div class="col-sm-3 col-md-3">
+        <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="q">
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    <ul id="navbar-right-fragment" class="nav navbar-nav navbar-right">
+                  <% if not signed_in? %>
+                  	 <li><a href="<%= signup_path %>">Sign Up</a></li>
+                     <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                     <ul id="navbar-session-dropdown" class="dropdown-menu">
+                        <li>
+                           <div class="row">
+                              <div class="col-md-12">
+									<%= bootstrap_form_for(:session, url: sessions_path) do |f| %>
+										<li><%= f.text_field :email %></li>
+										<li><%= f.password_field :password %></li>
+										<li><%= f.submit "Sign in", class: "btn btn-large btn-primary" %></li>
+									<% end %>
+                              </div>
+                           </div>
+                        </li>
+                     </ul>
+                     </li>
+                  <% else %>
+                    <li><a href="<%= user_path(@user.id) %>"><%= @user.name %></a></li>
+					<li><%= link_to "Logout", signout_path, method: "delete" %></li>
+                  <% end %>
+                  
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>

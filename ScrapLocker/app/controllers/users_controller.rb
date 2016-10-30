@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-	before_action :correct_user,   only: [:edit, :update]
+	before_action :correct_user,   only: [:edit, :update, :show]
 	before_action :admin_user,     only: :destroy
 
 	def index
@@ -8,7 +8,10 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.where(id: params[:id]).first
+		if @user.nil?
+			render template: 'static_pages/404'
+		end
 	end
 
 	def new
@@ -53,8 +56,9 @@ class UsersController < ApplicationController
 		# Before filters
 
 		def correct_user
-			@user = User.find(params[:id])
-			redirect_to(root_url) unless current_user?(@user)
+			@user = User.where(id: params[:id]).first
+			render template: 'static_pages/404' unless current_user?(@user)
+			#redirect_to(root_url) unless current_user?(@user)
 		end
 
 		def admin_user
